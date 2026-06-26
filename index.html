@@ -4,89 +4,343 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CV - Alison Betancourt</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --main-green: #4a7c59; }
+        
+        /* FUERZA EL USO TOTAL DE LA HOJA A4 */
+        @page { size: A4; margin: 1cm; }
+        body { 
+            font-family: 'Lato', sans-serif; 
+            line-height: 1.25;
+            color: #333; 
+            margin: 0 auto; 
+            padding: 0;
+            width: 100%;
+            max-width: 790px;
+        }
+
+        header { 
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            border-bottom: 1px solid rgba(74, 124, 89, 0.55); 
+            padding-bottom: 7px; 
+            margin-bottom: 10px; 
+        }
+        
+        .header-content { padding-right: 0; }
+        h1 { font-family: 'Playfair Display', serif; margin: 0; color: #2c3e50; font-size: 1.82em; }
+        .subtitulo { font-weight: 700; color: var(--main-green); text-transform: uppercase; margin-top: 1px; font-size: 0.88em; letter-spacing: 0.9px; }
+        .contact-info { margin-top: 5px; font-size: 0.84em; color: #555; font-weight: bold; }
+        
+        .photo-container { 
+            width: 110px; height: 110px; 
+            border-radius: 50%; overflow: hidden; border: 1px solid var(--main-green); 
+            margin-bottom: 6px;
+            background: #eee;
+        }
+        .photo-container img { width: 100%; height: 100%; object-fit: cover; }
+
+        section { margin-bottom: 13px; }
+        h2 { font-family: 'Playfair Display', serif; color: var(--main-green); font-size: 0.92em; border-bottom: 1px solid rgba(74, 124, 89, 0.45); margin-bottom: 6px; padding-bottom: 2px; text-transform: uppercase; letter-spacing: 0.45px; }
+        h3 { font-family: 'Lato', sans-serif; font-weight: 700; margin: 2px 0; color: #2c3e50; font-size: 0.88em; }
+        p, li { font-size: 0.81em; text-align: justify; margin: 2px 0; }
+        ul { margin: 2px 0 5px 16px; padding: 0; }
+        
+        .flex-container { display: flex; justify-content: flex-start; align-items: baseline; gap: 8px; }
+        .flex-container h3 { flex: 1; }
+        .date { font-size: 0.73em; color: #7f8c8d; font-weight: bold; white-space: nowrap; padding-right: 8px; }
+        .skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+
+        article { margin-bottom: 7px; padding-bottom: 4px; border-bottom: 1px solid rgba(74, 124, 89, 0.08); }
+
+        .skills-grid h3 { margin-bottom: 4px; }
+
+        .skills-grid ul { margin-top: 0; margin-left: 0; }
+
+        .skills-grid li {
+            margin-bottom: 4px;
+            list-style: none;
+            padding-left: 12px;
+            position: relative;
+        }
+
+        .skills-grid li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            top: 0;
+            color: var(--main-green);
+            font-size: 0.8em;
+            line-height: 1.2;
+        }
+
+        li::marker { color: var(--main-green); font-size: 0.75em; }
+
+        code { font-family: inherit; background: rgba(74, 124, 89, 0.08); padding: 0 3px; border-radius: 3px; }
+
+        @media print {
+            @page {
+                size: A4;
+                margin: 0.4cm;
+            }
+
+            body {
+                max-width: none;
+                width: auto;
+                font-size: 8pt;
+                line-height: 1.1;
+            }
+
+            header {
+                padding-top: 1mm;
+                padding-bottom: 2mm;
+                margin-bottom: 2.5mm;
+            }
+
+            .photo-container {
+                width: 28mm;
+                height: 28mm;
+                margin-bottom: 1.2mm;
+            }
+
+            h1 {
+                font-size: 1.52em;
+            }
+
+            .subtitulo {
+                font-size: 0.8em;
+                margin-top: 1px;
+            }
+
+            .contact-info {
+                font-size: 0.74em;
+                margin-top: 2px;
+            }
+
+            section { margin-bottom: 2.2mm; }
+
+            h2 {
+                font-size: 0.86em;
+                margin-bottom: 1mm;
+                padding-bottom: 0.8mm;
+            }
+
+            h3 {
+                font-size: 0.8em;
+            }
+
+            p, li {
+                font-size: 0.75em;
+                margin: 0.6px 0;
+            }
+
+            ul {
+                margin: 0.6mm 0 1.8mm 14px;
+            }
+
+            .date {
+                font-size: 0.68em;
+                padding-right: 5px;
+            }
+
+            article {
+                margin-bottom: 0.7mm;
+                padding-bottom: 0.5mm;
+            }
+
+            .skills-grid {
+                gap: 2mm;
+            }
+
+            .skills-grid h3 {
+                margin-bottom: 2px;
+            }
+
+            .skills-grid li {
+                margin-bottom: 1px;
+            }
+        }
+    </style>
 </head>
 <body>
     <header>
-        <!--Información personal-->
-        <h1>Alison Lizeth Betancourt Herrera</h1>
-        <p><strong>Teléfono:</strong> 0997020030</p>
-        <p><strong>Email:</strong> alisonbetancourt22@gmail.com</p>
-        <p><strong>Ciudad:</strong> Quito, Ecuador</p>
+        <div class="photo-container">
+            <img src="fotoAlison.jpg" alt="Foto de Alison Betancourt">
+        </div>
+        <div class="header-content">
+            <h1>Alison Lizeth Betancourt Herrera</h1>
+            <div class="subtitulo">Ingeniera de Software en formación</div>
+            <div class="contact-info">Quito, Ecuador | 0997020030 | alisonbetancourt22@gmail.com</div>
+        </div>
     </header>
-
-    <nav>
-        <h3>Navegación</h3>
-        <ul>
-            <li><a href="index.html">Inicio</a></li>
-            <li><a href="miTrabajo.html">Mi Experiencia y Portafolio</a></li>
-            <li><a href="horario.html">Mi Horario de Clases</a></li>
-        </ul>
-    </nav>
 
     <main>
         <section>
-            <!--Objetivo Profesional-->
             <h2>Objetivo Profesional</h2>
-            <p>Estudiante de Ingeniería de Software con interés en el área de aseguramiento de la calidad (QA). Poseo conocimientos básicos en programación, estructuras de datos y pruebas unitarias con JUnit. Busco desarrollar mis habilidades en control de calidad de software, documentación de pruebas y mejora continua de procesos de desarrollo.</p>
+            <p>Ingeniera de Software en formación, estudiante de séptimo semestre con experiencia práctica en proyectos tecnológicos. Busco integrarme a un entorno profesional donde pueda aplicar mis habilidades técnicas y de resolución de problemas, aportar al trabajo del equipo y seguir creciendo en desarrollo de software, análisis de datos y metodologías ágiles.</p>
         </section>
 
         <section>
-            <!--Educación-->
+            <h2>Logros y Reconocimientos</h2>
+            <ul>
+                <li><strong>Beca por Excelencia Académica:</strong> Otorgada por mantener un alto rendimiento académico.</li>
+                <li><strong>Tercer Lugar Internacional – PMI Andes Pacífico:</strong> Reconocimiento por el desarrollo y gestión de un proyecto de innovación.</li>
+                <li><strong>Participación en proyectos de investigación e innovación tecnológica:</strong> Experiencia en demostraciones y presentaciones para visitantes, estudiantes y representantes institucionales dentro del SmartLab EPN.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Experiencia Profesional y Proyectos</h2>
+            <article>
+                <div class="flex-container">
+                    <h3>Miembro Investigador | SmartLab EPN</h3>
+                    <span class="date">Actualidad</span>
+                </div>
+                <ul>
+                    <li>Participo en proyectos de investigación e innovación tecnológica desarrollados por el laboratorio.</li>
+                    <li>Colaboro en la presentación y demostración de soluciones tecnológicas durante visitas académicas e institucionales.</li>
+                    <li>Trabajo junto a docentes e investigadores en actividades relacionadas con el desarrollo y difusión de proyectos.</li>
+                </ul>
+            </article>
+
+            <article>
+                <div class="flex-container">
+                    <h3>Instructor de Programación | Algorithmics</h3>
+                    <span class="date">Actualidad</span>
+                </div>
+                <ul>
+                    <li>Imparto clases de programación y desarrollo de videojuegos para niños y adolescentes.</li>
+                    <li>Adapto conceptos técnicos a metodologías de enseñanza dinámicas según la edad y nivel de los estudiantes.</li>
+                    <li>Realizo seguimiento del progreso académico y fomento el desarrollo del pensamiento lógico y la resolución de problemas.</li>
+                </ul>
+            </article>
+
+            <article>
+                <div class="flex-container">
+                    <h3>Ingeniería de Datos y Business Intelligence | Proyecto SaludEC Analytics</h3>
+                    <span class="date">2024</span>
+                </div>
+                <ul>
+                    <li>Diseñé e implementé un Data Warehouse para integrar más de 1.1 millones de registros hospitalarios mediante procesos ETL.</li>
+                    <li>Desarrollé consultas SQL para el análisis y consolidación de información.</li>
+                    <li>Construí dashboards interactivos en Power BI para facilitar el análisis de indicadores y apoyar la toma de decisiones.</li>
+                    <li>Participé en el modelado y organización de la información para optimizar el acceso a los datos.</li>
+                </ul>
+            </article>
+
+            <article>
+                <div class="flex-container">
+                    <h3>Desarrollo de Aplicaciones Android</h3>
+                    <span class="date">2024</span>
+                </div>
+                <ul>
+                    <li>Desarrollé aplicaciones Android utilizando Java y Android Studio.</li>
+                    <li>Implementé integración con APIs REST para el intercambio de información con servicios externos.</li>
+                    <li>Desarrollé funcionalidades para almacenamiento local y seguro de datos.</li>
+                    <li>Integré componentes nativos con interfaces web mediante WebView.</li>
+                </ul>
+            </article>
+
+            <article>
+                <div class="flex-container">
+                    <h3>Diseño UX/UI | Proyecto Micro-Mentoring</h3>
+                    <span class="date">2024</span>
+                </div>
+                <ul>
+                    <li>Participé en la investigación de usuarios para identificar necesidades y oportunidades de mejora.</li>
+                    <li>Diseñé prototipos de alta fidelidad utilizando Figma.</li>
+                    <li>Validé la navegación y estructura de la aplicación mediante pruebas con usuarios.</li>
+                    <li>Colaboré en la definición de mejoras orientadas a la experiencia del usuario.</li>
+                </ul>
+            </article>
+
+            <article>
+                <div class="flex-container">
+                    <h3>Desarrollo de Software | Proyectos Académicos</h3>
+                    <span class="date">2023 - 2024</span>
+                </div>
+                <ul>
+                    <li>Desarrollé aplicaciones utilizando Java, HTML, CSS y SQL.</li>
+                    <li>Trabajé bajo metodología Scrum, participando en la planificación, seguimiento y entrega de funcionalidades.</li>
+                    <li>Implementé pruebas unitarias para validar el funcionamiento de diferentes módulos.</li>
+                    <li>Utilicé Git para el control de versiones y el trabajo colaborativo.</li>
+                </ul>
+            </article>
+
+            <article>
+                <div class="flex-container">
+                    <h3>Proyecto de Alfabetización Digital | Escuela Politécnica Nacional</h3>
+                    <span class="date">2024 - 2025</span>
+                </div>
+                <ul>
+                    <li>Capacité a adultos mayores y niños en el uso de herramientas tecnológicas.</li>
+                    <li>Diseñé actividades prácticas para fortalecer habilidades digitales.</li>
+                    <li>Promoví la inclusión tecnológica mediante talleres comunitarios.</li>
+                </ul>
+            </article>
+        </section>
+
+        <section>
             <h2>Educación</h2>
             <article>
-                <h3>Ingeniería de Software</h3>
-                <p><strong>Escuela Politécnica Nacional</strong> | 2022 - Actualidad</p>
-                <p>Actualmente cursando el 6to semestre. Formación en programación, algoritmos, bases de datos y fundamentos de pruebas de software.</p>
+                <div class="flex-container">
+                    <h3>Ingeniería de Software | Escuela Politécnica Nacional</h3>
+                    <span class="date">2022 - Actualidad</span>
+                </div>
+                <ul>
+                    <li>Séptimo semestre.</li>
+                    <li>Formación en desarrollo de software, estructuras de datos, bases de datos, ingeniería de software y metodologías ágiles.</li>
+                </ul>
             </article>
             <article>
-                <h3>Bachiller en Ciencias</h3>
-                <p><strong>Instituto Nacional Mejía</strong> | 2016 - 2022</p>
-                <p>Formación en ciencias con enfoque en matemáticas y participación en actividades académicas.</p>
+                <div class="flex-container">
+                    <h3>Bachiller en Ciencias | Instituto Nacional Mejía</h3>
+                    <span class="date">2016 - 2022</span>
+                </div>
             </article>
         </section>
 
         <section>
-            <!--Habilidades-->
-            <h2>HABILIDADES</h2>
-            <article>
-                <!--H. Tecnicas-->
-                <h3>Habilidades Técnicas</h3>
-                <ul>
-                    <li>Conocimientos en programación con C++, Java y Python</li>
-                    <li>Fundamentos de bases de datos y lenguaje SQL</li>
-                    <li>Comprensión de estructuras de datos y algoritmos básicos</li>
-                    <li>Uso básico de herramientas de control de versiones (Git y GitHub)</li>
-                    <li>Conocimientos iniciales en pruebas unitarias con JUnit</li>
-                    <li>Nociones de documentación de errores y control de calidad del software</li>
-                    <li>Comprensión básica del ciclo de vida del software (SDLC)</li>
-                    <li>Conocimientos generales en ingeniería de software y modelado UML</li>
-                </ul>
-            </article>
-            <article>
-                <!--H. Blandas-->
-                <h3>Habilidades Blandas</h3>
-                <ul>
-                    <li>Trabajo en equipo</li>
-                    <li>Comunicación efectiva</li>
-                    <li>Adaptabilidad</li>
-                    <li>Gestión del tiempo</li>
-                    <li>Atención al detalle</li>
-                </ul>
-            </article>
+            <h2>Habilidades</h2>
+            <div class="skills-grid">
+                <div>
+                    <h3>Técnicas</h3>
+                    <ul>
+                        <li><strong>Lenguajes:</strong> Java, C#, Python, SQL, HTML, CSS.</li>
+                        <li><strong>Frameworks y tecnologías:</strong> Spring Boot, Android Studio, APIs REST, Docker, Git, Power BI, Figma, Unity.</li>
+                        <li><strong>Metodologías:</strong> Scrum, desarrollo ágil y pruebas unitarias.</li>
+                        <li><strong>Idiomas:</strong> Español nativo e inglés intermedio-avanzado.</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>Blandas</h3>
+                    <ul>
+                        <li>Resolución de problemas.</li>
+                        <li>Pensamiento analítico.</li>
+                        <li>Trabajo en equipo.</li>
+                        <li>Comunicación efectiva.</li>
+                        <li>Adaptabilidad.</li>
+                        <li>Aprendizaje continuo.</li>
+                        <li>Organización y gestión del tiempo.</li>
+                        <li>Liderazgo y proactividad.</li>
+                    </ul>
+                </div>
+            </div>
         </section>
-        
+
         <section>
-            <!--Certificaciones-->
-            <h2>Certificaciones y Cursos</h2>
+            <h2>Certificaciones</h2>
             <ul>
-                <li>Fundamentos de Python 1 (Célula FIS-EPN) - NetAcad</li>
-                <li>Cursos de aprendizaje autónomo sobre programación y fundamentos de QA</li>
+                <li>Programa de Empleabilidad – PMI LATAM.</li>
+                <li>Fundamentos de Administración de Proyectos – PMI Noreste México.</li>
+                <li>Fundamentos de Python 1 – Cisco Networking Academy.</li>
+                <li>Seguridad de la Información y Gestión de Riesgos – Udemy.</li>
+                <li>Kali Linux para Principiantes – Udemy.</li>
             </ul>
         </section>
     </main>
-
-    <footer>
-        <p>&copy; 2025 Alison Lizeth Betancourt Herrera - Curriculum Vitae</p>
-    </footer>
 </body>
 </html>
